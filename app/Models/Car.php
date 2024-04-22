@@ -1,0 +1,103 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\User;
+use App\Models\Review;
+use App\Models\Reservation;
+use DateTime;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Http\Request;
+
+class Car extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['model', 'make', 'production_year', 'mileage', 'transmission', 'fuel', 'photos', 'fuel_usage', 'type', 'price', 'location', 'uid'];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'reviewed_car_id');
+    }
+
+    public function reservations(): HasMany
+    {
+        return $this->hasMany(Reservation::class, 'reserved_car_id');
+    }
+
+    public function getAvgCarRating(): float
+    {
+        return round($this->reviews()->get()->avg('rate_value'), 1);
+    }
+
+    public function getReviewForUser(): Collection
+    {
+        return $this->reviews()->where('uid', auth()->id())->get();
+    }
+
+    public function getSearchResults()
+    {
+        $search = request()->search;
+        $response = '';
+
+        $query = Car::query()
+            ->where('make', 'like', '%' . $search . '%')
+            ->orWhere('model', 'like', '%' . $search . '%')
+            ->orWhere('production_year', 'like', '%' . $search . '%')
+            ->orWhere('location', 'like', '%' . $search . '%')
+            ->orWhere('fuel', 'like', '%' . $search . '%')
+            ->get();
+
+        foreach ($query as $record) {
+            $response .= view('components.car-card', ['car' => $record])->render();
+        }
+
+        return $response;
+    }
+
+    public static function getCurrentMakes()
+    {
+        return Car::query()
+            ->distinct()
+            ->get('make');
+    }
+
+    public function checkReservationOverlap(DateTime $query_date_start, DateTime $query_date_end)
+    {
+        $reservations = $this->reservations()->get();
+        $reserv_overlaping = [];
+
+        foreach ($reservations as $key => $reservation) {
+            $reserv_date_start = new DateTime($reservation->date_start);
+            $reserv_date_end = new DateTime($reservation->date_end);
+
+            if ($reserv_date_start < $query_date_end && $reserv_date_end > $query_date_start) {
+                $reserv_overlaping[] = $reservation;
+            }
+        }
+
+        return empty($reserv_overlaping);
+    }
+
+    public static function getAdvancedSearchResults(Request $request): Collection
+    {
+        return Car::query()
+            ->where('make', 'LIKE', request()->make == 'all' ? '%' : request()->make)
+            ->where('type', 'LIKE', request()->type == 'all' ? '%' : request()->type)
+            ->where('location', 'LIKE', request()->location == 'all' ? '%' : request()->location)
+            ->where('transmission', 'LIKE', request()->transmission == 'all' ? '%' : request()->transmission)
+            ->where('fuel', 'LIKE', request()->fuel == 'all' ? '%' : request()->fuel)
+            ->whereBetween('production_year', [request()->year_from == 'all' ? 1990 : request()->year_from, request()->year_to == 'all' ? 2024 : request()->year_to])
+            ->get();
+    }
+}

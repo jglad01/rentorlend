@@ -1,0 +1,12 @@
+nav .nav-container {
+  max-width: 90rem;
+}
+nav .nav-container .nav-btn {
+  border: 1px solid transparent;
+}
+nav .nav-container .nav-btn:hover {
+  border: 1px solid gray;
+}
+nav span.web-logo {
+  padding-top: 5px;
+}

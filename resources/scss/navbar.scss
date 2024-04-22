@@ -1,0 +1,17 @@
+nav {
+    .nav-container {
+        max-width: 90rem;
+
+        .nav-btn {
+            border: 1px solid transparent;
+
+            &:hover {
+                border: 1px solid gray;
+            }
+        }
+    }
+
+    span.web-logo {
+        padding-top: 5px;
+    }
+}
