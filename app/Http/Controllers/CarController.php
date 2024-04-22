@@ -133,7 +133,12 @@ class CarController extends Controller
         return view('car.manage', ['cars' => auth()->user()->cars()->get()]);
     }
 
-    // Show advanced search form.
+    /**
+     * Show advanced search form.
+     * 
+     * @return Illuminate\Contracts\View\View
+     *  Advanced search form.
+     */
     public function search(): View
     {
         /** @var array $makes_list */
