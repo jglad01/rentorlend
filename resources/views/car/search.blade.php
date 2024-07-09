@@ -1,5 +1,10 @@
 @extends('layout')
 
+@php
+    $curr = request()->session()->get('currency') ?? 'PLN';
+    $rate = request()->session()->get('rate') ?? 1;
+@endphp
+
 @section('content')
 
 <div class="mt-8 text-center">
@@ -108,7 +113,7 @@
 
 @unless (count($cars) == 0)
     @foreach ($cars as $car)
-        <x-car-card :car="$car" />
+        <x-car-card :car="$car" :curr="$curr" :rate="$rate" />
     @endforeach
 @else
     @if (request()->search)

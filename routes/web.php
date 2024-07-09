@@ -8,6 +8,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\RateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ReservationController;
 
 /*
@@ -66,3 +67,5 @@ Route::get('reservations/manage', [ReservationController::class, 'manage'])->mid
 Route::get('reservations/{reservation}', [ReservationController::class, 'show'])->middleware('auth');
 
 Route::get('advanced-search', [CarController::class, 'search']);
+
+Route::get('setcurrency/{currency}', [SessionController::class, 'setCurrency']);

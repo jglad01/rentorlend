@@ -108,7 +108,7 @@
                         </div>
 
                         <div class="mb-6">
-                            <label for="price" class="inline-block text-lg mb-2">Price (per one day, in USD)</label>
+                            <label for="price" class="inline-block text-lg mb-2">Price (per one day, in PLN)</label>
                             <input type="number" class="border border-gray-200 rounded p-2 w-full" name="price" value="{{ $car->price }}" min="0" placeholder="Example: 40" />
                             @error('price')
                                 <p class="text-red-500">{{ $message }}</p>

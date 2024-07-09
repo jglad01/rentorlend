@@ -17,11 +17,25 @@ use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
+    /*private function checkSessionForCurrency(Request $request, &$currency, &$rate)
+    {
+        if ($request->session()->has('currency')) {
+            $currency = $request->session()->get('currency');
+            $rate = Car::getExchangeRate($currency);
+        }
+    }*/
+
     // Show all cars.
     public function index(Request $request): View
     {
+        //$currency = 'PLN';
+        //$rate = 1;
+        //$this->checkSessionForCurrency($request, $currency, $rate);
+
         return view('car.index', [
             'cars' => Car::latest()->get(),
+            //'curr' => $currency,
+            //'rate' => $rate,
         ]);
     }
 
@@ -62,8 +76,12 @@ class CarController extends Controller
     }
 
     // Show single car.
-    public function show(Car $car): View
+    public function show(Request $request, Car $car): View
     {
+        /*$currency = 'PLN'; // Moze cale currency i ex. rate wjebac do sesji?
+        $rate = 1;
+        $this->checkSessionForCurrency($request, $currency, $rate);*/
+
         $owner = User::find($car->uid);
         //$owner_rating = $owner->getRating($owner);
         $reviews = $car->reviews()->get();

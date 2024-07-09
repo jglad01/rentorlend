@@ -1,5 +1,15 @@
 @extends('layout')
 
+@php
+    $curr = 'PLN';
+    $rate = 1;
+
+    if (!is_null(session('currency'))) {
+        $curr = session('currency');
+        $rate = session('rate');
+    }
+@endphp
+
 @section('content')
 
             <div>
@@ -12,7 +22,7 @@
                             <img class="w-full sm:w-3/5 lg:w-2/5 mb-6 self-center lg:self-auto" src="{{ asset('storage/' . $car->photos) }}" alt="" />
                             <div class="flex flex-col text-center lg:text-left">
                                 <div class="text-2xl mb-2">{{ $car->make }} {{ $car->model }} | {{ $car->production_year }}</div>
-                                <div class="text-4xl">{{ $car->price }}$/day</div>
+                                <div class="text-4xl">{{ ceil($car->price / $rate) }}{{ $curr }}/day</div>
                                 <div class="text-lg my-4">
                                     <i class="fa-solid fa-location-dot"></i> {{ $car->location }}
                                 </div>
