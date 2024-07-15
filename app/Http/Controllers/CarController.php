@@ -62,7 +62,7 @@ class CarController extends Controller
     }
 
     // Show single car.
-    public function show(Car $car): View
+    public function show(Request $request, Car $car): View
     {
         $owner = User::find($car->uid);
         //$owner_rating = $owner->getRating($owner);

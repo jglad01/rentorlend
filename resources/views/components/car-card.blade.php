@@ -1,4 +1,4 @@
-@props(['car'])
+@props(['car', 'curr', 'rate'])
 
 <a href="cars/{{ $car->id }}" class="car-card bg-tab_bg p-6 rounded-lg">
     <div>
@@ -12,13 +12,13 @@
                     @endisset
                 </h3>
                 <div class="text-xl mb-4 md:block hidden">{{ $car->production_year }} | {{ $car->mileage }} km | {{ ucfirst($car->fuel) }}</div>
-                <div class="text-2xl my-2 block md:hidden">{{ $car->price }}$ / day</div>
+                <div class="text-2xl my-2 block md:hidden">{{ ceil($car->price / $rate) }}{{ $curr }} / day</div>
                 <div class="text-lg mt-4">
                     <i class="fa-solid fa-location-dot"></i> {{ $car->location }}
                 </div>
             </div>
             <div class="self-center mr-0 ml-auto hidden md:block">
-                <p class="text-2xl lg:text-4xl">{{ $car->price }}$ / day</p>
+                <p class="text-2xl lg:text-3xl">{{ ceil($car->price / $rate) }}{{ $curr }} / day</p>
             </div>
         </div>
     </div>

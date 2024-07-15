@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use DateTime;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Reservation;
-use DateTime;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Http\Request;
 
 class Car extends Model
 {
@@ -49,6 +50,8 @@ class Car extends Model
     {
         $search = request()->search;
         $response = '';
+        $curr = request()->session()->get('currency') ?? 'PLN';
+        $rate = request()->session()->get('rate') ?? 1;
 
         $query = Car::query()
             ->where('make', 'like', '%' . $search . '%')
@@ -59,7 +62,7 @@ class Car extends Model
             ->get();
 
         foreach ($query as $record) {
-            $response .= view('components.car-card', ['car' => $record])->render();
+            $response .= view('components.car-card', ['car' => $record, 'curr' => $curr, 'rate' => $rate])->render(); // Fix searching with currency.
         }
 
         return $response;
