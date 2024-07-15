@@ -103,15 +103,4 @@ class Car extends Model
             ->whereBetween('production_year', [request()->year_from == 'all' ? 1990 : request()->year_from, request()->year_to == 'all' ? 2024 : request()->year_to])
             ->get();
     }
-
-    /*public static function getExchangeRate(string $currency)
-    {
-        $response = Http::withHeaders([
-            'Accept' => 'application/json',
-        ])->get('http://api.nbp.pl/api/exchangerates/rates/a/' . $currency . '?format=json');
-
-        if ($response->successful()) {
-            return $response->json()['rates'][0]['mid'];
-        }
-    }*/
 }
