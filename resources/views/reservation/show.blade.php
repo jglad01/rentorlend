@@ -2,6 +2,11 @@
 
 @section('content')
 
+@php
+    $curr = request()->session()->get('currency') ?? 'PLN';
+    $rate = request()->session()->get('rate') ?? 1;
+@endphp
+
 <a href="/otodom_clone/public/" class="inline-block text-black ml-4 mb-4"
                 ><i class="fa-solid fa-arrow-left"></i> Back
             </a>
@@ -35,7 +40,7 @@
                         @endif
 
                         <p class="text-2xl mt-6">Reservation from: {{ $reservation->date_start }} To: {{ $reservation->date_end }}</p>
-                        <p class="text-2xl mb-6">Total price: {{ $reservation->total_cost }}$</p>
+                        <p class="text-2xl mb-6">Total price: {{ ceil($reservation->total_cost / $rate) }}{{ $curr }}</p>
                         <div class="border border-gray-200 w-full mb-6"></div>
                         <div class="w-2/5">
                             <p class="text-2xl font-bold mb-4 text-left">

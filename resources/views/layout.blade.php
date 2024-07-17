@@ -92,10 +92,17 @@
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
+                      @php
+                        $notification = auth()->user()->unreadNotifications->all();
+                      @endphp
                       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                       <p class="text-gray-700 rounded-md px-3 py-2 text-sm font-medium cursor-default select-none">Hello {{ auth()->user()->name }}</p>
                       <a href="/otodom_clone/public/cars/manage" class="text-gray-700 nav-btn rounded-md px-3 py-2 text-sm font-medium">Manage cars</a>
-                      <a href="/otodom_clone/public/reservations/manage" class="text-gray-700 nav-btn rounded-md px-3 py-2 text-sm font-medium">Manage reservations</a>
+                      <a href="/otodom_clone/public/reservations/manage" class="text-gray-700 nav-btn rounded-md px-3 py-2 text-sm font-medium">Manage reservations
+                        @if ($notification)
+                          <span class="notification-badge relative top-0.5 right-1 px-[3px] py-0 rounded-full bg-red-600 inline-block h-2.5"> &nbsp;</span>
+                        @endif
+                      </a>
                       <form class="inline" method="POST" action="/otodom_clone/public/logout">
                         @csrf
                         <button type="submit" class="text-gray-700 px-3 py-2 text-sm font-medium nav-btn rounded-md">
