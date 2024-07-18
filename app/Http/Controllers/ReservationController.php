@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\Reservation;
 use App\Models\User;
+use App\Notifications\ReservationNotification;
 use DateTime;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -64,7 +65,9 @@ class ReservationController extends Controller
         $form_fields['date_start'] = $date_start->format('Y-m-d');
         $form_fields['date_end'] = $date_end->format('Y-m-d');
 
-        Reservation::create($form_fields);
+        $reservation = Reservation::create($form_fields);
+
+        $this->createNotification($car->uid, $reservation);
 
         return redirect('cars/' . $car->id)->with('message', 'Car reserved succesfully!');
     }
@@ -77,17 +80,28 @@ class ReservationController extends Controller
      */
     public function manage(): View
     {
-        $my_cars_reserv = collect();
+        /** @var Collection $my_cars_reserv_prev, $my_cars_reserv_upcoming */
+        $my_cars_reserv_prev = $my_cars_reserv_upcoming = collect();
         $my_cars = auth()->user()->cars()->get();
 
         foreach ($my_cars as $car) {
-            $my_cars_reserv = $my_cars_reserv->merge($car->reservations()->get());
+            $my_cars_reserv_upcoming = $my_cars_reserv_upcoming->merge($car->reservations()->where('date_start', '>=', date('Y-m-d'))->get());
+            $my_cars_reserv_prev = $my_cars_reserv_prev->merge($car->reservations()->where('date_start', '<', date('Y-m-d'))->get());
         }
+
+        $notifications = auth()->user()->unreadNotifications->all();
 
         return view('reservation.manage', [
             'car' => Car::class,
-            'my_cars_reservations' => $my_cars_reserv,
-            'my_reservations' => auth()->user()->reservations()->get(),
+            'my_cars_reservations' => [
+                'upcoming' => $my_cars_reserv_upcoming->sortBy('date_start'),
+                'previous' => $my_cars_reserv_prev->sortByDesc('date_start'),
+            ],
+            'my_reservations' => [
+                'upcoming' => auth()->user()->reservations()->where('date_start', '>=', date('Y-m-d'))->get(),
+                'previous' => auth()->user()->reservations()->where('date_start', '<', date('Y-m-d'))->get(),
+            ],
+            'notifications' => $notifications,
         ]);
     }
 
@@ -107,6 +121,15 @@ class ReservationController extends Controller
 
         if (auth()->user()->id != $car_owner->id && auth()->user()->id != $reservation->uid) {
             abort(403, 'You dont have access to this site');
+        } elseif (auth()->user()->id == $car_owner->id) {
+            $notifications = auth()->user()->unreadNotifications->all();
+
+            foreach ($notifications as $notification) {
+                if ($notification->data['reservation_id'] == $reservation->id) {
+                    $notification->markAsRead();
+                    $notification->delete();
+                }
+            }
         }
 
         return view('reservation.show', [
@@ -114,5 +137,11 @@ class ReservationController extends Controller
             'car_owner' => $car_owner,
             'car' => $car,
         ]);
+    }
+
+    public function createNotification(int $car_owner, Reservation $reservation)
+    {
+        $user = User::find($car_owner);
+        $user->notify(new ReservationNotification($reservation));
     }
 }
