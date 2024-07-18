@@ -13,7 +13,6 @@ class ReservationNotification extends Notification
     use Queueable;
 
     protected Reservation $reservation;
-    //private int $reserv_id;
 
     /**
      * Create a new notification instance.
@@ -34,17 +33,6 @@ class ReservationNotification extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
-     */
-    /*public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }*/
-
-    /**
      * Get the array representation of the notification.
      *
      * @return array<string, mixed>
@@ -53,15 +41,7 @@ class ReservationNotification extends Notification
     {
         return [
             'data' => 'New reservation.',
-            //'uid' => $this->uid,
             'reservation_id' => $this->reservation->id,
         ];
     }
-
-    /*public function toDatabase($notifiable)
-    {
-        return [
-            'message' => 'The introduction to the notification for database.',
-        ];
-    }*/
 }
