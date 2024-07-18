@@ -8,7 +8,7 @@
     $rate = request()->session()->get('rate') ?? 1;
 @endphp
 
-<div id="search-container" class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4 mt-10">
+<div id="search-container" class="lg:grid lg:grid-cols-2 gap-4 space-y-4 lg:space-y-0 mx-4 mt-10">
 
 @unless (count($cars) == 0)
     @foreach ($cars as $car)
