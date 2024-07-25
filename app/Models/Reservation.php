@@ -15,17 +15,25 @@ class Reservation extends Model
 
     protected $fillable = ['date_start', 'date_end', 'reserved_car_id', 'uid', 'total_cost', 'contact_phone', 'contact_email'];
 
+    // Relationship to user.
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id');
     }
 
+    // Relationship to car.
     public function car(): BelongsTo
     {
         return $this->belongsTo(Car::class, 'id');
     }
 
-    public function getBlockedDays(): string|false
+    /**
+     * Gets the days when specified car is already reserved. Used in Reservation calendar via AJAX request.
+     * 
+     * @return string|FALSE
+     *  JSON encoded dates or FALSE when failed.
+     */
+    public function getBlockedDays(): string|FALSE
     {
         $car_id = request()->carid;
         $blocked_dates = [];

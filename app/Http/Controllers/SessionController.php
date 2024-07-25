@@ -8,6 +8,11 @@ use Illuminate\Http\RedirectResponse;
 
 class SessionController extends Controller
 {
+    /**
+     * Sets currency for session.
+     * 
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function setCurrency(Request $request, string $currency): RedirectResponse
     {
         if ($currency === 'PLN' && $request->session()->has('currency')) {

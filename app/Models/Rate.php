@@ -13,11 +13,13 @@ class Rate extends Model
 
     protected $fillable = ['rated_user_id', 'rate_author_id', 'rate_value'];
 
+    // Relationship to Rate author.
     public function rateAuthor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id');
     }
 
+    // Relationship to Rated user.
     public function ratedUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id');

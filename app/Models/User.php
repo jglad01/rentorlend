@@ -48,31 +48,42 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // Relationship to cars.
     public function cars(): HasMany
     {
         return $this->hasMany(Car::class, 'uid');
     }
 
+    // Relationship to given ratings.
     public function ratingsGiven(): HasMany
     {
         return $this->hasMany(Rate::class, 'rate_author_id');
     }
 
+    // Relationship to received ratings.
     public function ratingsReceived(): HasMany
     {
         return $this->hasMany(Rate::class, 'rated_user_id');
     }
 
+    /**
+     * Gets the average user rating.
+     * 
+     * @return float
+     *  Rating.
+     */
     public function getUserRating(): float
     {
         return round($this->ratingsReceived()->get()->avg('rate_value'), 1);
     }
 
+    // Relationship to reviews.
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class, 'uid');
     }
 
+    // Relationship to reservations.
     public function reservations(): HasMany
     {
         return $this->hasMany(Reservation::class, 'uid');
