@@ -14,7 +14,7 @@
 
             <div>
                 <div class="p-6 lg:p-10">
-                    <a href="/otodom_clone/public/" class="inline-block text-black my-3">
+                    <a href="/public/" class="inline-block text-black my-3">
                         <i class="fa-solid fa-arrow-left"></i> Back
                     </a>
                     <div class="flex flex-col items-center justify-center text-center">
@@ -47,7 +47,7 @@
                         </div>
                         @if (auth()->user() && $car->uid == auth()->user()->id)
                         @else
-                            <a href="/otodom_clone/public/reservations/cars/{{ $car->id }}" class="block bg-denim1 text-white mt-6 py-2 px-3 rounded-xl hover:opacity-80"><i class="fa-solid fa-calendar-days"></i>
+                            <a href="/public/reservations/cars/{{ $car->id }}" class="block bg-denim1 text-white mt-6 py-2 px-3 rounded-xl hover:opacity-80"><i class="fa-solid fa-calendar-days"></i>
                                 Check availability and reserve this car!
                             </a>
                         @endif
@@ -62,7 +62,7 @@
                                 Edit
                             </a>
 
-                            <form class="inline" method="POST" action="/otodom_clone/public/cars/{{ $car->id }}">
+                            <form class="inline" method="POST" action="/public/cars/{{ $car->id }}">
                                 @csrf
                                 @method('DELETE')
                                 <button class="text-red-500"><i class="fa-solid fa-trash mr-1"></i>Delete</button>
@@ -94,7 +94,7 @@
                                 <i data-rating-value="4" class="fa fa-star rating-star"></i>
                                 <i data-rating-value="5" class="fa fa-star rating-star"></i>
                             </div>
-                            <form class="rating-submit" method="POST" action="/otodom_clone/public/reviews/cars/{{ $car->id }}">
+                            <form class="rating-submit" method="POST" action="/public/reviews/cars/{{ $car->id }}">
                                 @csrf
                                 <input type="hidden" name="rating-value" id="rating-value" value="0">
                                 <label for="review-comment">Leave a comment (optional)</label>
@@ -103,7 +103,7 @@
                             </form>
                         @endif
                     @else
-                            <p><a href="/otodom_clone/public/login" class="text-slate-600">Sign in</a> to post a review</p>
+                            <p><a href="/public/login" class="text-slate-600">Sign in</a> to post a review</p>
                     @endauth
                 </div>
             </div>

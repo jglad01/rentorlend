@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url: "/otodom_clone/public/getblockeddays",
+        url: "/public/getblockeddays",
         data: { carid: carID },
         dataType: "json",
         success: function (response) {

@@ -14,8 +14,8 @@
         />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-        <link rel="stylesheet" href="/otodom_clone/public/style/css/main.css">
-        <link rel="stylesheet" href="/otodom_clone/public/style/css/navbar.css">
+        <link rel="stylesheet" href="//public/style/css/main.css">
+        <link rel="stylesheet" href="//public/style/css/navbar.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="https://cdn.tailwindcss.com"></script>
@@ -37,12 +37,12 @@
                 },
             };
         </script>
-        <script src="/otodom_clone/public/script/rating.js"></script>
-        <script src="/otodom_clone/public/script/reserve-calendar.js"></script>
-        <script src="/otodom_clone/public/script/search-calendar.js"></script>
-        <script src="/otodom_clone/public/script/search.js"></script>
-        <script src="/otodom_clone/public/script/main.js"></script>
-        <script src="/otodom_clone/public/script/mobile-menu.js"></script>
+        <script src="//public/script/rating.js"></script>
+        <script src="//public/script/reserve-calendar.js"></script>
+        <script src="//public/script/search-calendar.js"></script>
+        <script src="//public/script/search.js"></script>
+        <script src="//public/script/main.js"></script>
+        <script src="//public/script/mobile-menu.js"></script>
         <title>RentOrLend | Car rental and share</title>
     </head>
     <body class="pb-40">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
                   <div class="flex flex-shrink-0 items-center">
-                      <a href="/otodom_clone/public" class="flex gap-3">
+                      <a href="//public" class="flex gap-3">
                         <svg width="38px" height="38px" viewBox="-1.2 -1.2 26.40 26.40" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 21H3V4.6C3 4.03995 3 3.75992 3.10899 3.54601C3.20487 3.35785 3.35785 3.20487 3.54601 3.10899C3.75992 3 4.03995 3 4.6 3H13.4C13.9601 3 14.2401 3 14.454 3.10899C14.6422 3.20487 14.7951 3.35785 14.891 3.54601C15 3.75992 15 4.03995 15 4.6V8M6 7H7M6 10H7M6 13H7M11 7H12M10 15L10.2706 14.1881C10.5329 13.4013 10.6641 13.0078 10.9073 12.717C11.1221 12.4601 11.3979 12.2613 11.7095 12.1388C12.0624 12 12.477 12 13.3064 12H16.6936C17.523 12 17.9376 12 18.2905 12.1388C18.6021 12.2613 18.8779 12.4601 19.0927 12.717C19.3359 13.0078 19.4671 13.4013 19.7294 14.1881L20 15M21 21V18.2C21 17.0799 21 16.5198 20.782 16.092C20.5903 15.7157 20.2843 15.4097 19.908 15.218C19.4802 15 18.9201 15 17.8 15H12.2C11.0799 15 10.5198 15 10.092 15.218C9.71569 15.4097 9.40973 15.7157 9.21799 16.092C9 16.5198 9 17.0799 9 18.2V21M9 20H21M12 17.5H12.01M18 17.5H18.01" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                         <span class="web-logo">RentOrLend</span>
                       </a>
@@ -82,7 +82,7 @@
                   <div class="hidden lg:ml-8 lg:block">
                     <div class="flex space-x-4">
                       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                      <a href="/otodom_clone/public/advanced-search" class="nav-btn text-gray-700 rounded-md px-3 py-2 text-sm font-medium">
+                      <a href="//public/advanced-search" class="nav-btn text-gray-700 rounded-md px-3 py-2 text-sm font-medium">
                         <i class="fa fa-search text-gray-700 z-20 mr-2"></i>
                         Advanced search
                       </a>
@@ -97,13 +97,13 @@
                         $notification = auth()->user()->unreadNotifications->all();
                       @endphp
                       <p class="text-gray-700 rounded-md px-3 py-2 text-sm font-medium cursor-default select-none">Hello {{ auth()->user()->name }}</p>
-                      <a href="/otodom_clone/public/cars/manage" class="text-gray-700 nav-btn rounded-md px-3 py-2 text-sm font-medium">Manage cars</a>
-                      <a href="/otodom_clone/public/reservations/manage" class="text-gray-700 nav-btn rounded-md px-3 py-2 text-sm font-medium">Manage reservations
+                      <a href="//public/cars/manage" class="text-gray-700 nav-btn rounded-md px-3 py-2 text-sm font-medium">Manage cars</a>
+                      <a href="//public/reservations/manage" class="text-gray-700 nav-btn rounded-md px-3 py-2 text-sm font-medium">Manage reservations
                         @if ($notification)
                           <span class="notification-badge relative top-0.5 right-1 px-[3px] py-0 rounded-full bg-red-600 inline-block h-2.5"> &nbsp;</span>
                         @endif
                       </a>
-                      <form class="inline" method="POST" action="/otodom_clone/public/logout">
+                      <form class="inline" method="POST" action="//public/logout">
                         @csrf
                         <button type="submit" class="text-gray-700 px-3 py-2 text-sm font-medium nav-btn rounded-md">
                             <i class="fa-solid fa-sign-out"></i>
@@ -117,7 +117,7 @@
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
-                      <a href="/otodom_clone/public/login" class="text-gray-700 nav-btn rounded-md px-3 py-2 text-sm font-medium">Log in</a>
+                      <a href="//public/login" class="text-gray-700 nav-btn rounded-md px-3 py-2 text-sm font-medium">Log in</a>
                     </div>
                   </div>
                 </div>
@@ -179,14 +179,14 @@
               <div class="space-y-1 px-2 pb-3 pt-2">
                 @auth
                   <p class="text-gray-700 text-center text-sm font-medium cursor-default select-none">Hello {{ auth()->user()->name }}</p>
-                  <a href="/otodom_clone/public/cars/manage" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Manage cars</a>
-                  <a href="/otodom_clone/public/reservations/manage" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Manage reservations
+                  <a href="//public/cars/manage" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Manage cars</a>
+                  <a href="//public/reservations/manage" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Manage reservations
                     @if ($notification)
                       <span class="notification-badge relative top-0.5 right-1 px-[3px] py-0 rounded-full bg-red-600 inline-block h-2.5"> &nbsp;</span>
                     @endif
                   </a>
-                  <a href="/otodom_clone/public/advanced-search" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Advanced search</a>
-                  <form class="inline" method="POST" action="/otodom_clone/public/logout">
+                  <a href="//public/advanced-search" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Advanced search</a>
+                  <form class="inline" method="POST" action="//public/logout">
                   @csrf
                       <button type="submit" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium text-left w-full">
                           <i class="fa-solid fa-sign-out"></i>
@@ -194,8 +194,8 @@
                       </button>
                   </form>
                 @else
-                  <a href="/otodom_clone/public/advanced-search" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Advanced search</a>
-                  <a href="/otodom_clone/public/login" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Log in</a>
+                  <a href="//public/advanced-search" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Advanced search</a>
+                  <a href="//public/login" class="text-gray-900 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Log in</a>
                 @endauth
               </div>
             </div>

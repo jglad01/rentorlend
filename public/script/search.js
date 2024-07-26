@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "/otodom_clone/public/searchresult",
+            url: "/public/searchresult",
             data: { search: search },
             dataType: "html",
             success: function (response) {
