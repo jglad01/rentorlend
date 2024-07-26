@@ -19,5 +19,15 @@ body {
         }
     }
 
-    .adv-search-form {}
+    .pagination-section {
+
+        a,
+        span {
+            background-color: (255 255 255 / var(--tw-bg-opacity));
+        }
+
+        span {
+            color: rgb(61, 63, 68);
+        }
+    }
 }

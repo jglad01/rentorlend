@@ -20,5 +20,8 @@
 @endunless
 
 </div>
+<div class="pagination-section mt-16 lg:px-80">
+    {{ $cars->links() }}
+</div>
 
 @endsection

@@ -25,7 +25,7 @@ class CarController extends Controller
     public function index(Request $request): View
     {
         return view('car.index', [
-            'cars' => Car::latest()->get(),
+            'cars' => Car::latest()->paginate(10),
         ]);
     }
 
