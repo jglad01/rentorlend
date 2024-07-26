@@ -16,7 +16,7 @@
             Upcoming
         </p>
 
-    <table class="w-full table-auto rounded-sm">
+    <table class="w-full table-auto rounded-sm block overflow-x-scroll md:overflow-x-visible md:table">
         @unless (count($my_cars_reservations['upcoming']) == 0)
         <thead>
             <tr>
@@ -78,7 +78,7 @@
         Previous
     </p>
 
-    <table class="w-full table-auto rounded-sm">
+    <table class="w-full table-auto rounded-sm block overflow-x-scroll md:overflow-x-visible md:table">
         @unless (count($my_cars_reservations['upcoming']) == 0)
         <thead>
             <tr>
@@ -141,7 +141,7 @@
         Upcoming
     </p>
 
-    <table class="w-full table-auto rounded-sm">
+    <table class="w-full table-auto rounded-sm block overflow-x-scroll md:overflow-x-visible md:table">
         @unless (count($my_reservations) == 0)
         <thead>
             <tr>
@@ -190,7 +190,7 @@
         Previous
     </p>
 
-    <table class="w-full table-auto rounded-sm">
+    <table class="w-full table-auto rounded-sm block overflow-x-scroll md:overflow-x-visible md:table">
         @unless (count($my_reservations) == 0)
         <thead>
             <tr>

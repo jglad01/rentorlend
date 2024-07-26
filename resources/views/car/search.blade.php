@@ -11,10 +11,10 @@
     <form action="" class="adv-search-form">
         <input type="hidden" name="search" value="true">
 
-        <div class="flex flex-row gap-8 justify-center">
-            <div class="text-left">
+        <div class="flex flex-col lg:flex-row gap-8 lg:justify-center text-center lg:text-left">
+            <div>
                 <label for="make" class="inline text-lg mb-2 block">Make:</label>
-                <select class="p-2 bg-white rounded block" name="make">
+                <select class="p-2 bg-white rounded block m-auto" name="make">
                     <option value="all" selected="selected">All</option>
                     @foreach ($makes_list as $make)
                         <option value="{{ $make->make }}">{{ $make->make }}</option>
@@ -22,9 +22,9 @@
                 </select>
             </div>
 
-            <div class="text-left">
+            <div>
                 <label for="type" class="inline text-lg mb-2 block">Type:</label>
-                <select class="p-2 bg-white rounded block" name="type">
+                <select class="p-2 bg-white rounded block m-auto" name="type">
                     <option value="all" selected="selected">All</option>
                     <option value="sedan">Sedan</option>
                     <option value="wagon">Wagon</option>
@@ -35,9 +35,9 @@
                 </select>
             </div>
 
-            <div class="text-left">
+            <div>
                 <label for="location" class="inline text-lg mb-2 block">Location:</label>
-                <select class="p-2 bg-white rounded block" name="location" id="location">
+                <select class="p-2 bg-white rounded block m-auto" name="location" id="location">
                     <option value="all" selected="selected">All</option>
                     <option value="Gdansk">Gdansk</option>
                     <option value="Szczecin">Szczecin</option>
@@ -48,18 +48,18 @@
                 </select>
             </div>
 
-            <div class="text-left">
+            <div>
                 <label for="transmission" class="inline text-lg mb-2 block">Transmission:</label>
-                <select class="p-2 bg-white rounded block" name="transmission" id="transmission">
+                <select class="p-2 bg-white rounded block m-auto" name="transmission" id="transmission">
                     <option value="all" selected="selected">All</option>
                     <option value="manual">Manual</option>
                     <option value="automatic">Automatic</option>
                 </select>
             </div>
 
-            <div class="text-left">
+            <div>
                 <label for="fuel" class="inline text-lg mb-2 block">Fuel:</label>
-                <select class="p-2 bg-white rounded block" name="fuel" id="fuel">
+                <select class="p-2 bg-white rounded block m-auto" name="fuel" id="fuel">
                     <option value="all" selected="selected">All</option>
                     <option value="gasoline">Gasoline</option>
                     <option value="diesel">Diesel</option>
@@ -69,12 +69,12 @@
             </div>
         </div>
 
-        <div class="flex flex-row gap-8 justify-center mt-6">
-            @php($years_between = range(1990, 2024))
+        <div class="flex flex-col lg:flex-row gap-8 lg:justify-center mt-6 text-center lg:text-left">
+            @php($years_between = range(1990, date('Y')))
 
-            <div class="text-left">
+            <div>
                 <label for="year_from" class="inline text-lg mb-2 block">Prod. year from:</label>
-                <select class="p-2 bg-white rounded block sm:min-w-32" name="year_from">
+                <select class="p-2 bg-white rounded block sm:min-w-32 m-auto" name="year_from">
                     <option value="all" selected="selected">All</option>
                     @foreach ($years_between as $year)
                         <option value="{{ $year }}">{{ $year }}</option>
@@ -82,9 +82,9 @@
                 </select>
             </div>
 
-            <div class="text-left">
+            <div>
                 <label for="year_to" class="inline text-lg mb-2 block">To:</label>
-                <select class="p-2 bg-white rounded block sm:min-w-32" name="year_to">
+                <select class="p-2 bg-white rounded block sm:min-w-32 m-auto" name="year_to">
                     <option value="all" selected="selected">All</option>
                     @foreach ($years_between as $year)
                         <option value="{{ $year }}">{{ $year }}</option>
@@ -92,14 +92,14 @@
                 </select>
             </div>
 
-            <div class="text-left">
+            <div>
                 <label for="date_start" class="text-lg block">Reserv. From:</label>
-                <input type="text" id="date_from" class="border block border-gray-200 rounded p-2 w-full sm:w-auto" name="date_from"/>
+                <input type="text" id="date_from" class="border block border-gray-200 rounded p-2 w-full sm:w-auto m-auto" name="date_from"/>
             </div>
 
-            <div class="text-left">
+            <div>
                 <label for="date_end" class="text-lg block mb-0">To:</label>
-                <input type="text" id="date_to" class="border block border-gray-200 rounded p-2 w-full sm:w-auto" name="date_to"/>
+                <input type="text" id="date_to" class="border block border-gray-200 rounded p-2 w-full sm:w-auto m-auto" name="date_to"/>
             </div>
         </div>
 

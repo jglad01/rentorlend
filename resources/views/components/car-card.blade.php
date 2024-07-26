@@ -1,14 +1,14 @@
 @props(['car', 'curr', 'rate'])
 
-<a href="cars/{{ $car->id }}" class="car-card bg-tab_bg p-6 rounded-lg">
+<a href="cars/{{ $car->id }}" class="car-card bg-tab_bg p-6 rounded-lg block">
     <div>
         <div class="flex">
             <img class="hidden w-48 mr-6 md:block aspect-video" src="{{ asset('storage/' . $car->photos) }}" alt=""/>
             <div>
                 <h3 class="text-2xl">
-                    <span>{{ $car->make }} {{ $car->model }}</span>
+                    <span class="block sm:inline">{{ $car->make }} {{ $car->model }}</span>
                     @unless ($car->getAvgCarRating() == 0)
-                        <span class="ml-2"><i class="fa fa-star star-checked"></i> {{ $car->getAvgCarRating() }}</span>
+                        <span class="sm:ml-2"><i class="fa fa-star star-checked"></i> {{ $car->getAvgCarRating() }}</span>
                     @endisset
                 </h3>
                 <div class="text-xl mb-4 md:block hidden">{{ $car->production_year }} | {{ $car->mileage }} km | {{ ucfirst($car->fuel) }}</div>

@@ -17,21 +17,33 @@ use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
-    // Show all cars.
+    /**
+     * Show all cars.
+     * 
+     * @return Illuminate\Contracts\View\View
+     */
     public function index(Request $request): View
     {
         return view('car.index', [
-            'cars' => Car::latest()->get(),
+            'cars' => Car::latest()->paginate(10),
         ]);
     }
 
-    // Add new car form.
+    /**
+     * Add new car form.
+     * 
+     * @return Illuminate\Contracts\View\View
+     */
     public function create(): View
     {
         return view('car.create');
     }
 
-    // Store car data.
+    /**
+     * Store car data.
+     * 
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request): RedirectResponse
     {
         $form_fields = $request->validate([
@@ -61,7 +73,11 @@ class CarController extends Controller
         return redirect('/')->with('message', 'Car added succesfully!');
     }
 
-    // Show single car.
+    /**
+     * Show single car.
+     * 
+     * @return Illuminate\Contracts\View\View
+     */
     public function show(Request $request, Car $car): View
     {
         $owner = User::find($car->uid);
@@ -77,13 +93,21 @@ class CarController extends Controller
         ]);
     }
 
-    // Edit car info form.
+    /**
+     * Edit car info form.
+     * 
+     * @return Illuminate\Contracts\View\View
+     */
     public function edit(Car $car): View
     {
         return view('car.edit', ['car' => $car]);
     }
 
-    // Update car info.
+    /**
+     * Update car info.
+     * 
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, Car $car): RedirectResponse
     {
         if ($car->uid != auth()->id()) {
@@ -120,14 +144,22 @@ class CarController extends Controller
         return redirect('cars/' . $car->id)->with('message', 'Changes saved');
     }
 
-    // Delete car.
+    /**
+     * Delete car.
+     * 
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function delete(Request $request, Car $car): RedirectResponse
     {
         $car->delete();
         return redirect('')->with('message', 'Car deleted');
     }
 
-    // Show manage cars page.
+    /**
+     * Show manage cars page.
+     * 
+     * @return Illuminate\Contracts\View\View
+     */
     public function manage(): View
     {
         return view('car.manage', ['cars' => auth()->user()->cars()->get()]);

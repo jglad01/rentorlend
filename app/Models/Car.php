@@ -21,31 +21,52 @@ class Car extends Model
 
     protected $fillable = ['model', 'make', 'production_year', 'mileage', 'transmission', 'fuel', 'photos', 'fuel_usage', 'type', 'price', 'location', 'uid'];
 
+    // Relationship to user
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id');
     }
 
+    // Relationship to reviews.
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class, 'reviewed_car_id');
     }
 
+    // Relationship to reservations.
     public function reservations(): HasMany
     {
         return $this->hasMany(Reservation::class, 'reserved_car_id');
     }
 
+    /**
+     * Gets the average rating for the car.
+     * 
+     * @return float
+     *  Rating.
+     */
     public function getAvgCarRating(): float
     {
         return round($this->reviews()->get()->avg('rate_value'), 1);
     }
 
+    /**
+     * Checks if current user has already reviewed the car.
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     *  Result of the query.
+     */
     public function getReviewForUser(): Collection
     {
         return $this->reviews()->where('uid', auth()->id())->get();
     }
 
+    /**
+     * Results of the AJAX front page search.
+     * 
+     * @return string
+     *  Rendered search results.
+     */
     public function getSearchResults()
     {
         $search = request()->search;
@@ -62,12 +83,15 @@ class Car extends Model
             ->get();
 
         foreach ($query as $record) {
-            $response .= view('components.car-card', ['car' => $record, 'curr' => $curr, 'rate' => $rate])->render(); // Fix searching with currency.
+            $response .= view('components.car-card', ['car' => $record, 'curr' => $curr, 'rate' => $rate])->render();
         }
 
         return $response;
     }
 
+    /**
+     * Gets current car makes. Used in advanced search.
+     */
     public static function getCurrentMakes()
     {
         return Car::query()
@@ -75,7 +99,13 @@ class Car extends Model
             ->get('make');
     }
 
-    public function checkReservationOverlap(DateTime $query_date_start, DateTime $query_date_end)
+    /**
+     * Checks if the given period overlaps with existing reservations. Used in reservation calendar.
+     * 
+     * @return bool
+     *  Whether time period overlaps already existing reservations.
+     */
+    public function checkReservationOverlap(DateTime $query_date_start, DateTime $query_date_end): bool
     {
         $reservations = $this->reservations()->get();
         $reserv_overlaping = [];
@@ -92,6 +122,12 @@ class Car extends Model
         return empty($reserv_overlaping);
     }
 
+    /**
+     * Queries the database to get the advanced search results.
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     *  Results of the advanced search
+     */
     public static function getAdvancedSearchResults(Request $request): Collection
     {
         return Car::query()

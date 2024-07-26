@@ -14,3 +14,10 @@ body .car-card:hover {
   box-shadow: 5px 7px 8px #c7c7c7;
   transition: background-color 150ms linear;
 }
+body .pagination-section a,
+body .pagination-section span {
+  background-color: 255 255 255/var(--tw-bg-opacity);
+}
+body .pagination-section span {
+  color: rgb(61, 63, 68);
+}

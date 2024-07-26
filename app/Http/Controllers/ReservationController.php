@@ -139,7 +139,10 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function createNotification(int $car_owner, Reservation $reservation)
+    /**
+     * Create notification for car owner.
+     */
+    public function createNotification(int $car_owner, Reservation $reservation): void
     {
         $user = User::find($car_owner);
         $user->notify(new ReservationNotification($reservation));

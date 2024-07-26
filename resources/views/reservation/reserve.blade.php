@@ -24,7 +24,7 @@
     </div>
 
     <div class="mb-6">
-        <label for="contact_phone" class="inline-block text-lg mb-2">Contact phone number for the reservation</label>
+        <label for="contact_phone" class="inline-block text-lg mb-2">Contact phone number</label>
         <input type="tel" class="border border-gray-200 rounded p-2 w-full" name="contact_phone"/>
         @error('contact_phone')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="mb-6">
-        <label for="contact_email" class="inline-block text-lg mb-2">Contact email for the reservation</label>
+        <label for="contact_email" class="inline-block text-lg mb-2">Contact email</label>
         <input type="email" class="border border-gray-200 rounded p-2 w-full" name="contact_email" value="{{ auth()->user()->email ?? '' }}"/>
         @error('contact_email')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
