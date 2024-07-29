@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# RentorLend - car renting website
 
-## About Laravel
+This project allows users to rent a car and list their cars for rent. For more functionalities, check out the 'Main Functionalities' section below.  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Main functionalities and technical details
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Adding, deleting, editing cars: authenticated users can add a new car listing, then edit and delete it.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Reserving:
+    - Users can reserve a specified car, using a simple form with a calendar that filters out days that the car is already reserved on.
+    - Users can easily manage reservations with two tables - one is showing reservations of their listed cars, and the other one is showing reservations that they have made. Every reservation have its own detail page accessible for both reserving user and car owner.
 
-## Learning Laravel
+- Searching:
+    - Users can use a quick search feature using AJAX, on the homepage. It checks car's make, model, year of production and fuel type, and returns matching listings.
+    - Users can use an advanced search feature where they can search for a specific car using a form. They can specify i.a. make, type, location, fuel type, but also specific time period that the car is avalable to rent.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Comments, reviews and rates:
+    - Users can post a review of the car. Review contains a rate (from 1 to 5 stars) and an optional comment. All reviews are public and visible at the bottom of the car details page - in the comments section. Additionally, if the car has been reviewed, the average rate is visible on the listing card.
+    - Users can rate other users on a scale of 1 to 5 stars. The average rating is visible next to the user info section of the car details page.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Setting currency: users can change their preffered currency - PLN, US Dollar or Euro. The base currency is PLN, chosen currency and exchange rate is stored in session. Current exchange rate is taken from [NBP API](http://api.nbp.pl/).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Notifications: car owners receive notification every time their car gets reserved. Red dot appears on the 'Manage reservations' tab, and new reservations are marked with label on the reservations table.
 
-## Laravel Sponsors
+### Tech stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+**Backend:**  
+Server: Apache  
+Database: MariaDB  
+Framework: Laravel 10 w/ PHP 8.1  
 
-### Premium Partners
+**Frontend:**  
+JS w/ jQuery  
+Tailwind  
+SCSS
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Local setup
 
-## Contributing
+### Using docker (recommended)
+Visit https://github.com/jglad01/rentorlend-docker-wrapper and follow the setup instructions.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Using xampp
+> [!IMPORTANT]
+> Using xampp for setting up this project, may not work as expected. Apache/PHP versions and settings can make a huge difference on how the project works. If you want to continue using xampp, make sure your .htaccess and php.ini are similar.
 
-## Code of Conduct
+1. Open xampp/htdocs in your terminal  
+2. Clone the repo inside ```git clone https://github.com/jglad01/rentorlend.git .```
+3. Install all composer dependencies ```composer install```
+4. Changing the document root directory will most likely be needed. See how to do this [here](https://stackoverflow.com/a/18903044). Change it to the *public* directory.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Next features 
+- Email notifications
+- Specifying days that car is available for rent (as a car owner)
+- Cancelling reservations, both as car owner and reserving user.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
