@@ -7,7 +7,7 @@
         <h1 class="text-3xl text-center font-bold mt-6 uppercase">
             Manage your cars
         </h1>
-        <p class="text-xl text-center mb-6 text-slate-500"><a href="/otodom_clone/public/cars/add">Add new car</p>
+        <p class="text-xl text-center mb-6 text-slate-500"><a href="/cars/add">Add new car</p>
     </header>
 
     <table class="w-full table-auto rounded-sm">
@@ -19,7 +19,7 @@
                 <td
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
-                    <a href="/otodom_clone/public/cars/{{ $car->id }}">
+                    <a href="/cars/{{ $car->id }}">
                         {{ $car->make }} {{ $car->model }}
                     </a>
                 </td>
@@ -27,7 +27,7 @@
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
                     <a
-                        href="/otodom_clone/public/cars/{{ $car->id }}/edit"
+                        href="/cars/{{ $car->id }}/edit"
                         class="text-blue-400 px-6 py-2 rounded-xl"
                         ><i
                             class="fa-solid fa-pen-to-square"
@@ -38,7 +38,7 @@
                 <td
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
-                <form method="POST" action="/otodom_clone/public/cars/{{ $car->id }}">
+                <form method="POST" action="/cars/{{ $car->id }}">
                     @csrf
                     @method('DELETE')
                     <button class="text-red-500"><i class="fa-solid fa-trash"></i>Delete</button>

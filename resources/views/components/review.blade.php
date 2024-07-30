@@ -19,7 +19,7 @@
         </div>
         @if ($review->uid == auth()->id())
             <div class="self-center mr-0 ml-auto">
-                <form method="POST" action="/otodom_clone/public/reviews/{{ $review->id }}">
+                <form method="POST" action="/reviews/{{ $review->id }}">
                     @csrf
                     @method('DELETE')
                     <button class="text-red-500"><i class="fa-solid fa-trash mr-2"></i>Delete</button>

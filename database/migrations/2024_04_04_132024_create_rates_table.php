@@ -16,11 +16,11 @@ return new class extends Migration
             $table->timestamps();
             $table
                 ->foreignId('rated_user_id')
-                ->constrained()
+                ->constrained('users', 'id')
                 ->onDelete('cascade');
             $table
                 ->foreignId('rate_author_id')
-                ->constrained();
+                ->constrained('users', 'id');
             $table->integer('rate_value');
         });
     }

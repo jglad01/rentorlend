@@ -17,12 +17,12 @@ return new class extends Migration
             $table->date('date_end')->format('Y-m-d');
             $table
                 ->foreignId('reserved_car_id')
-                ->constrained()
+                ->constrained('cars', 'id')
                 ->onDelete('cascade');
             $table
                 ->foreignId('uid')
                 ->nullable()
-                ->constrained()
+                ->constrained('users', 'id')
                 ->onDelete('cascade');
             $table->integer('total_cost');
             $table->string('contact_phone');

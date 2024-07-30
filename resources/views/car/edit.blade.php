@@ -9,7 +9,7 @@
                         </h2>
                     </header>
 
-                    <form method="POST" action="/otodom_clone/public/cars/{{ $car->id }}" enctype="multipart/form-data">
+                    <form method="POST" action="/cars/{{ $car->id }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-6">
