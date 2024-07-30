@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "/public/searchresult",
+            url: "/searchresult",
             data: { search: search },
             dataType: "html",
             success: function (response) {

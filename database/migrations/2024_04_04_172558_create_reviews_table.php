@@ -20,11 +20,11 @@ return new class extends Migration
                 ->nullable();
             $table
                 ->foreignId('reviewed_car_id')
-                ->constrained()
+                ->constrained('cars', 'id')
                 ->onDelete('cascade');
             $table
                 ->foreignId('uid')
-                ->constrained()
+                ->constrained('users', 'id')
                 ->onDelete('cascade');
         });
     }

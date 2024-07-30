@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table
                 ->foreignId('uid')
-                ->constrained()
+                ->constrained('users', 'id')
                 ->onDelete('cascade');
             $table->integer('production_year');
             $table->integer('mileage');

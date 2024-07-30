@@ -10,7 +10,7 @@
     <img class="w-3/5 mx-auto" src="{{ asset('storage/' . $car->photos) }}" alt="" />
 </header>
 
-<form id="reservation-form" method="POST" action="/public/reservations/cars/{{ $car->id }}" data-car-id="{{ $car->id }}">
+<form id="reservation-form" method="POST" action="/reservations/cars/{{ $car->id }}" data-car-id="{{ $car->id }}">
     @csrf
     <div class="mb-6">
         <label for="name" class="inline-block text-lg mb-2">

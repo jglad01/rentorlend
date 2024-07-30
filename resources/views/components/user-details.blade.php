@@ -19,7 +19,7 @@
                 <i data-rating-value="3" class="fa fa-star rating-star"></i>
                 <i data-rating-value="4" class="fa fa-star rating-star"></i>
                 <i data-rating-value="5" class="fa fa-star rating-star"></i>
-                <form class="rating-submit inline" method="POST" action="/public/rate/user/{{ $user->id }}">
+                <form class="rating-submit inline" method="POST" action="/rate/user/{{ $user->id }}">
                     @csrf
                     <input type="hidden" id="rating-value" name="rating-value" value="0">
                     <button class="block bg-denim1 mt-2 p-2 text-white rounded-xl hover:opacity-80 inline">Submit</button>

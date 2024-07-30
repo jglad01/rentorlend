@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url: "/public/getblockeddays",
+        url: "/getblockeddays",
         data: { carid: carID },
         dataType: "json",
         success: function (response) {

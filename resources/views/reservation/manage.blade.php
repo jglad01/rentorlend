@@ -35,7 +35,7 @@
                 <td
                     class="px-3 py-6 border-t border-b border-gray-300 text-lg text-center"
                 >
-                    <a href="/public/cars/{{ $current_car->id }}">
+                    <a href="/cars/{{ $current_car->id }}">
                         {{ $current_car->make }} {{ $current_car->model }}
                     </a>
                 </td>
@@ -55,7 +55,7 @@
                     {{ $reservation->created_at }}
                 </td>
                 <td class="px-3 py-6 border-t border-b border-gray-300 text-lg text-center">
-                    <a href="/public/reservations/{{ $reservation->id }}">
+                    <a href="/reservations/{{ $reservation->id }}">
                         Reservation details
                         @foreach ($notifications as $notification)
                             @if ($notification->data['reservation_id'] == $reservation->id)
@@ -97,7 +97,7 @@
                 <td
                     class="px-3 py-6 border-t border-b border-gray-300 text-lg text-center"
                 >
-                    <a href="/public/cars/{{ $current_car->id }}">
+                    <a href="/cars/{{ $current_car->id }}">
                         {{ $current_car->make }} {{ $current_car->model }}
                     </a>
                 </td>
@@ -119,7 +119,7 @@
                 <td
                     class="px-3 py-6 border-t border-b border-gray-300 text-lg text-center"
                 >
-                    <a href="/public/reservations/{{ $reservation->id }}">
+                    <a href="/reservations/{{ $reservation->id }}">
                         Reservation details
                     </a>
                 </td>
@@ -158,7 +158,7 @@
         <tbody>
             <tr class="border-gray-300">
                 <td class="px-3 py-6 border-t border-b border-gray-300 text-lg text-center">
-                    <a href="/public/cars/{{ $current_car->id }}">
+                    <a href="/cars/{{ $current_car->id }}">
                         {{ $current_car->make }} {{ $current_car->model }}
                     </a>
                 </td>
@@ -172,7 +172,7 @@
                     {{ ceil($reservation->total_cost / $rate) }} {{ $curr }}
                 </td>
                 <td class="px-3 py-6 border-t border-b border-gray-300 text-lg text-center">
-                    <a href="/public/reservations/{{ $reservation->id }}">
+                    <a href="/reservations/{{ $reservation->id }}">
                         Reservation details
                     </a>
                 </td>
@@ -208,7 +208,7 @@
         <tbody>
             <tr class="border-gray-300">
                 <td class="px-3 py-6 border-t border-b border-gray-300 text-lg text-center">
-                    <a href="/public/cars/{{ $current_car->id }}">
+                    <a href="/cars/{{ $current_car->id }}">
                         {{ $current_car->make }} {{ $current_car->model }}
                     </a>
                 </td>
@@ -222,7 +222,7 @@
                     {{ ceil($reservation->total_cost / $rate) }} {{ $curr }}
                 </td>
                 <td class="px-3 py-6 border-t border-b border-gray-300 text-lg text-center">
-                    <a href="/public/reservations/{{ $reservation->id }}">
+                    <a href="/reservations/{{ $reservation->id }}">
                         Reservation details
                     </a>
                 </td>
